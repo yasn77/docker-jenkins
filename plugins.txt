@@ -1,0 +1,1 @@
+http://updates.jenkins-ci.org/download/plugins/scm-sync-configuration/0.0.7.4/scm-sync-configuration.hpi
