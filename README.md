@@ -13,3 +13,7 @@ Jenkins Home : /var/lib/jenkins
 Timezone : Europe/London
 ````
 
+Set the image timezone
+```docker run --env TZ=<TIMEZONE> -d -P <CONTAINER>```
+
+You can also add plugins in to the image by downloading in to the plugins directory
