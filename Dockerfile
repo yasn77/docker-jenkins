@@ -1,7 +1,7 @@
 FROM ubuntu:12.04
 MAINTAINER Yasser Nabi "yassersaleemi@gmail.com"
-VOLUME ["/jenkins"]
-ENV JENKINS_HOME /jenkins
+VOLUME ["/var/lib/jenkins"]
+ENV JENKINS_HOME /var/lib/jenkins
 ENV JENKINS_VER 1.557
 ENV TZ Europe/London
 EXPOSE 8080
