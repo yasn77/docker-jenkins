@@ -9,6 +9,8 @@ EXPOSE 8080
 
 # Pin openssl to avoid heartbleed
 RUN echo "Package: openssl\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500\n\nPackage: libssl1.0.0\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500" > /etc/apt/preferences.d/openssl
+
+RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-7-jre-headless curl
 
 ADD ./jenkins.sudoers /etc/sudoers.d/jenkins
