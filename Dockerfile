@@ -11,6 +11,7 @@ EXPOSE 8080
 RUN echo "Package: openssl\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500\n\nPackage: libssl1.0.0\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500" > /etc/apt/preferences.d/openssl
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-7-jre-headless curl
 
+ADD ./jenkins.sudoers /etc/sudoers.d/jenkins
 ADD ./plugins/ ${JENKINS_HOME}/plugins/
 
 ADD http://pkg.jenkins-ci.org/debian/binary/jenkins_${JENKINS_VER}_all.deb /tmp/jenkins_${JENKINS_VER}_all.deb
