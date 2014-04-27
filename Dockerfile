@@ -9,7 +9,7 @@ ENV JENKINS_PREFIX /jenkins
 ENV JENKINS_ARGS '--webroot=/var/cache/jenkins/war --httpPort=8080 --ajp13Port=-1'
 ENV TZ Europe/London
 ENV DEBIAN_FRONTEND noninteractive
-EXPOSE 8080 2812
+EXPOSE 8080 2812 22
 
 
 # Pin openssl to avoid heartbleed
