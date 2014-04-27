@@ -1,19 +1,41 @@
 docker-jenkins
 ==============
+    OS Base : Ubuntu 14.04
+    Jenkins version :  1.557
+    Exposed Ports : 8080 2812 22
+    Jenkins Home : /var/lib/jenkins
+    Timezone : Europe/London
 
-````
-OS Base : Ubuntu 12.04
+Environment Variables
+---------------------
+    JENKINS_JAVA_ARGS
+        Arguments to pass to Java when Jenkins starts. Default : '-Djava.awt.headless=true'
+    JENKINS_MAXOPENFILES
+        Ulimit maxopenfiles for Jenkins. Default '8192'
+    JENKINS_PREFIX
+        URL prefix. Default '/jenkins'
+    JENKINS_ARGS
+        Start up arguements for Jenkins. Default '--webroot=/var/cache/jenkins/war --httpPort=8080 --ajp13Port=-1'
+    TZ
+        Container Timezone. Default 'Europe/London'
 
-Jenkins version :  1.557
+Services
+--------
+    Jenkins
+    Monit
+    SSHD
 
-Exposed Port : 8080
 
-Jenkins Home : /var/lib/jenkins
+When running the image, you can pass in environment variables that will affect the behaviour of Jenkins.
+An example, you change the Timezone by runnning:
+    `docker run --env TZ=<TIMEZONE> -d <CONTAINER_ID>`
+Or change Java heap size:
+    `docker run --env JENKINS_JAVA_ARGS=-Xmx4g -d <CONTAINER_ID>`
 
-Timezone : Europe/London
-````
+Monit is used to control the start up and management of Jenkins (and SSHD). You can access the monit webserver
+by exposing port 2812 on the Docker host. The user name is `monit` and password can be found by running
+`docker logs <CONTAINER_ID> 2>/dev/null | grep MONIT_PASSWORD`
 
-Set the image timezone
-```docker run --env TZ=<TIMEZONE> -d -P <CONTAINER>```
+OpenSSH is also running, you can ssh to the container by exposing port 22 on your Docker host and using the username
+`jenkins`. Password can be found by running `docker logs <CONTAINER_ID> 2>/dev/null | grep JENKINS_PASSWORD`
 
-You can also add plugins in to the image by downloading in to the plugins directory

@@ -1,0 +1,4 @@
+check process jenkins with pidfile /var/run/jenkins/jenkins.pid
+       start program = "/jenkins_init_wrapper.sh start"
+       stop program  = "/jenkins_init_wrapper.sh stop"
+       if failed port 8080 then restart
