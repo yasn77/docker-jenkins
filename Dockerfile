@@ -27,11 +27,14 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
 
 ADD ./monit.d/ /etc/monit/conf.d/
 ADD ./jenkins.sudoers /etc/sudoers.d/jenkins
-ADD ./jenkins_init_wrapper.sh ./jenkins_init_wrapper.sh
+ADD ./jenkins_init_wrapper.sh /jenkins_init_wrapper.sh
+ADD ./plugins_script /plugins_script
 ADD ./start.sh /start.sh
 
 RUN curl -s -L -o /tmp/jenkins_${JENKINS_VER}_all.deb http://pkg.jenkins-ci.org/debian/binary/jenkins_${JENKINS_VER}_all.deb && \
         dpkg -i /tmp/jenkins_${JENKINS_VER}_all.deb ; \
         apt-get -fy install
+
+RUN /plugins_script/download_plugins.sh
 
 ENTRYPOINT ["/bin/bash", "/start.sh"]

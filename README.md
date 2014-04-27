@@ -44,3 +44,28 @@ OpenSSH is also running, you can ssh to the container by exposing port 22 on you
     
     docker logs <CONTAINER_ID> 2>/dev/null | grep JENKINS_PASSWORD
 
+Plugins
+-------
+
+The following list of plugins come included in the container:
+
+    config-file-provider
+    envinject
+    git
+    git-client
+    git-server
+    github
+    github-api
+    greenballs
+    multiple-scms
+    parameterized-trigger
+    promoted-builds
+    scm-api
+    scm-sync-configuration
+    scriptler
+    swarm
+    token-macro
+    xunit
+It is possible to customise the plugins that get added to the image by updating:
+
+    ./plugins_script/plugins.txt

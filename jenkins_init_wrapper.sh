@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Read Env Vars set by Docker
 source /docker.env
 
+# Create a Jenkins default file, used by init script
 cat <<EOF > /etc/default/jenkins
 NAME=jenkins
 JAVA=/usr/bin/java
@@ -17,17 +19,26 @@ HTTP_PORT=8080
 AJP_PORT=-1
 PREFIX="${JENKINS_PREFIX}"
 JENKINS_ARGS="${JENKINS_ARGS}"
-
 EOF
+
 
 source /etc/default/jenkins
 
+# Set Jenkins user password, so we can SSH
 JENKINS_PASSWD=$(openssl rand -base64 6)
 echo JENKINS_PASSWORD=${JENKINS_PASSWD}
 echo -e "${JENKINS_PASSWD}\n${JENKINS_PASSWD}" | passwd jenkins &>/dev/null
+
+# Allow the Jenkins user to control Monit services
 usermod -G monit -s /bin/bash jenkins
 
-mkdir -p $(dirname ${PIDFILE}) $(dirname ${JENKINS_LOG})
+mkdir -p $(dirname ${PIDFILE}) $(dirname ${JENKINS_LOG}) ${JENKINS_HOME}/plugins
 chown -R jenkins ${JENKINS_HOME} $(dirname ${PIDFILE}) $(dirname ${JENKINS_LOG})
+
+# Enable downloaded plugins
+for plugin in $(find /downloaded_plugins/ -type f -name "*.[hj]pi")
+do
+    ln -s ${plugin} ${JENKINS_HOME}/plugins/
+done
 
 /etc/init.d/jenkins $1

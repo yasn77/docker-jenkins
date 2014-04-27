@@ -1,12 +1,13 @@
 #!/bin/bash
-if [ ! -d ${JENKINS_HOME}/plugins ]
-then
-    mkdir -p ${JENKINS_HOME}/plugins
-fi
-cd ${JENKINS_HOME}/plugins
-for p in $(cat ${JENKINS_HOME}/plugins.txt)
+
+mkdir -p /downloaded_plugins
+
+cd /downloaded_plugins
+for p in $(cat /plugins_script/plugins.txt)
 do
     echo "Adding Jenkins Plugin ${p}..."
-    curl -L -s -O ${p}
+    if ! curl -f -L -s -O http://updates.jenkins-ci.org/latest/${p}.hpi
+    then
+        curl -f -L -s -O http://updates.jenkins-ci.org/latest/${p}.jpi
+    fi
 done
-cd ${OLDPWD}
