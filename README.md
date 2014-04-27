@@ -28,14 +28,19 @@ Services
 
 When running the image, you can pass in environment variables that will affect the behaviour of Jenkins.
 An example, you change the Timezone by runnning:
-    `docker run --env TZ=<TIMEZONE> -d <CONTAINER_ID>`
+    
+    docker run --env TZ=<TIMEZONE> -d <CONTAINER_ID>
 Or change Java heap size:
-    `docker run --env JENKINS_JAVA_ARGS=-Xmx4g -d <CONTAINER_ID>`
+    
+    docker run --env JENKINS_JAVA_ARGS=-Xmx4g -d <CONTAINER_ID>
 
 Monit is used to control the start up and management of Jenkins (and SSHD). You can access the monit webserver
-by exposing port 2812 on the Docker host. The user name is `monit` and password can be found by running
-`docker logs <CONTAINER_ID> 2>/dev/null | grep MONIT_PASSWORD`
+by exposing port 2812 on the Docker host. The user name is `monit` and password can be found by running:
+    
+    docker logs <CONTAINER_ID> 2>/dev/null | grep MONIT_PASSWORD
 
 OpenSSH is also running, you can ssh to the container by exposing port 22 on your Docker host and using the username
-`jenkins`. Password can be found by running `docker logs <CONTAINER_ID> 2>/dev/null | grep JENKINS_PASSWORD`
+`jenkins`. Password can be found by running:
+    
+    docker logs <CONTAINER_ID> 2>/dev/null | grep JENKINS_PASSWORD
 
