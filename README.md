@@ -13,7 +13,7 @@ Environment Variables
 
 Services
 --------
-    Jenkins
+    Jenkins LTS
     Monit
     SSHD
 
