@@ -11,7 +11,8 @@ RUN apt-get update && apt-get -y install \
             openssh-server \
             monit \
             git \
-            subversion
+            subversion \
+            jenkins
 
 ADD ./monit.d/ /etc/monit/conf.d/
 ADD ./jenkins.sudoers /etc/sudoers.d/jenkins
