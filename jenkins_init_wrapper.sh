@@ -41,4 +41,10 @@ do
     ln -s ${plugin} ${JENKINS_HOME}/plugins/
 done
 
+# Set JNLP slave port if the environment variable is set
+if [ -n "${JENKINS_SLAVE_JNLP}" ]
+then
+  sed -e "s/<slaveAgentPort>.*/<slaveAgentPort>${JENKINS_SLAVE_JNLP}<\/slaveAgentPort>/" -i ${JENKINS_HOME}/config.xml
+fi
+
 /etc/init.d/jenkins $1

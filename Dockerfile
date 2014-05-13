@@ -9,11 +9,7 @@ ENV JENKINS_PREFIX /jenkins
 ENV JENKINS_ARGS '--webroot=/var/cache/jenkins/war --httpPort=8080 --ajp13Port=-1'
 ENV TZ Europe/London
 ENV DEBIAN_FRONTEND noninteractive
-EXPOSE 8080 2812 22
-
-
-# Pin openssl to avoid heartbleed
-RUN echo "Package: openssl\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500\n\nPackage: libssl1.0.0\nPin: version 1.0.1-4ubuntu5.12\nPin-Priority: 500" > /etc/apt/preferences.d/openssl
+EXPOSE 8080 2812 22 36562 33848/udp
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
         apt-get update && \
@@ -30,6 +26,7 @@ ADD ./jenkins.sudoers /etc/sudoers.d/jenkins
 ADD ./jenkins_init_wrapper.sh /jenkins_init_wrapper.sh
 ADD ./plugins_script /plugins_script
 ADD ./start.sh /start.sh
+ADD ./config.xml $JENKINS_HOME/config.xml
 
 RUN curl -s -L -o /tmp/jenkins_${JENKINS_VER}_all.deb http://pkg.jenkins-ci.org/debian/binary/jenkins_${JENKINS_VER}_all.deb && \
         dpkg -i /tmp/jenkins_${JENKINS_VER}_all.deb ; \

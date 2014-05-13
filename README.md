@@ -2,7 +2,7 @@ docker-jenkins
 ==============
     OS Base : Ubuntu 14.04
     Jenkins version :  1.557
-    Exposed Ports : 8080 2812 22
+    Exposed Ports : 8080 2812 22 36562 33848/udp
     Jenkins Home : /var/lib/jenkins
     Timezone : Europe/London
 
@@ -16,6 +16,8 @@ Environment Variables
         URL prefix. Default '/jenkins'
     JENKINS_ARGS
         Start up arguements for Jenkins. Default '--webroot=/var/cache/jenkins/war --httpPort=8080 --ajp13Port=-1'
+    JENKINS_SLAVE_JNLP
+        JNLP port for Jenkins Slave commnication. Default : 36562
     TZ
         Container Timezone. Default 'Europe/London'
 
