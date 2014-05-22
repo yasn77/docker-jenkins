@@ -71,3 +71,5 @@ The following list of plugins come included in the container:
 It is possible to customise the plugins that get added to the image by updating:
 
     ./plugins_script/plugins.txt
+
+You don't need to worry about plugin dependencies, they are resolved when you build the image.
