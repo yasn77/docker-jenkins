@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER Yasser Nabi "yassersaleemi@gmail.com"
 VOLUME ["/var/lib/jenkins"]
 ENV JENKINS_HOME /var/lib/jenkins
-ENV JENKINS_VER 1.557
+ENV JENKINS_VER 1.566
 ENV JENKINS_JAVA_ARGS '-Djava.awt.headless=true'
 ENV JENKINS_MAXOPENFILES 8192
 ENV JENKINS_PREFIX /jenkins
