@@ -1,7 +1,7 @@
 docker-jenkins
 ==============
     OS Base : Ubuntu 14.04
-    Jenkins version :  1.566
+    Jenkins version : 1.571
     Exposed Ports : 8080 2812 22 36562 33848/udp
     Jenkins Home : /var/lib/jenkins
     Timezone : Europe/London
