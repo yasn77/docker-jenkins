@@ -1,4 +1,4 @@
-FROM jenkinsci/jenkins
+FROM jenkins:1.609.2
 MAINTAINER Yasser Nabi "yassersaleemi@gmail.com"
 ENV JAVA_OPTS '-Djava.awt.headless=true'
 ENV TZ Europe/London
@@ -11,8 +11,7 @@ RUN apt-get update && apt-get -y install \
             openssh-server \
             monit \
             git \
-            subversion \
-            jenkins
+            subversion
 
 ADD ./monit.d/ /etc/monit/conf.d/
 ADD ./jenkins.sudoers /etc/sudoers.d/jenkins

@@ -1,7 +1,7 @@
 docker-jenkins
 ==============
-    OS Base : jenkinsci/jenkins
-    Jenkins version : 1.624
+    OS Base : jenkins
+    Jenkins version : 1.609.2
     Exposed Ports : 8080 2812 22 50000
     Jenkins Home : /var/jenkins_home
     Timezone : Europe/London
@@ -17,7 +17,8 @@ Services
     Monit
     SSHD
 
-This container uses the [official Jenkins image](https://github.com/jenkinsci/docker) as its base. I would suggest reading the documentation for the official image first, as all the environment variable options are supported.
+This container uses the [official Jenkins LTS image](https://hub.docker.com/r/library/jenkins/) as its base.
+I would suggest reading the documentation for the official image first, as all the environment variable options are supported.
 
 You change the Timezone by runnning:
 
@@ -42,19 +43,19 @@ The following list of plugins come included in the container:
 	envinject
 	git
 	git-client
-    git-server
-    github
-    github-api
-    greenballs
-    multiple-scms
-    parameterized-trigger
-    promoted-builds
-    scm-api
-    scm-sync-configuration
-    scriptler
-    swarm
-    token-macro
-    xunit
+  git-server
+  github
+  github-api
+  greenballs
+  multiple-scms
+  parameterized-trigger
+  promoted-builds
+  scm-api
+  scm-sync-configuration
+  scriptler
+  swarm
+  token-macro
+  xunit
 
 It is possible to customise the plugins that get added to the image by updating:
 
