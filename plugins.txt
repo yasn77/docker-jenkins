@@ -4,11 +4,14 @@ git
 git-client
 git-server
 github
+github-api
 greenballs
 multiple-scms
 parameterized-trigger
 promoted-builds
+scm-api
 scm-sync-configuration
 scriptler
 swarm
+token-macro
 xunit

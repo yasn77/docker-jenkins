@@ -1,7 +1,5 @@
 #!/bin/bash
 
-env | egrep "^JENKINS|^TZ" > /docker.env
-
 # Generate SSH host keys
 rm -f "/etc/ssh/ssh_host_key"
 rm -f "/etc/ssh/ssh_host_rsa_key"
