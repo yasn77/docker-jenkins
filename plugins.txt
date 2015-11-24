@@ -1,4 +1,8 @@
 config-file-provider
+custom-tools-plugin
+docker-build-publish
+docker-commons-plugin
+docker-plugin
 envinject
 git
 git-client
